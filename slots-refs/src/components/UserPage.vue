@@ -57,9 +57,8 @@ export default {
   methods: {
     openModal() {
       this.isModalOpen = true;
-      this.$emit("signal")
     },
-  },
+  }
 };
 </script>
 

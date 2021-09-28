@@ -16,7 +16,7 @@
         </div>
         <div 
           class="modal-body"
-          @signal="scrollJump"
+          @scroll="onBodyScroll"
           ref="modalBody"
           >
           <slot></slot>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import scrollHandler from '../mixins/scrollHandler'
+
 export default {
     data() {
         return {
@@ -56,22 +58,12 @@ export default {
       default: "",
     }
   },
+  mixins: [scrollHandler],
   methods: {
-    scrollJump() {
-      console.log("hi")
-      const modalBody = this.$refs.modalBody
-      modalBody.scrollBy(0, modalBody.clientHeight + modalBody.scrollTop);
-    },
     closeModal() {
       this.$emit("close");
-    }/* ,
-    onBodyScroll() {
-        const modalBody = this.$refs.modalBody
-        if (modalBody.clientHeight + modalBody.scrollTop >= modalBody.
-            scrollHeight ) {  (это с 19ой строки - @scroll="onBodyScroll")
-            this.rulesAreRead = true
-        }
-    } */
+    },
+    
   }
 };
 </script>
